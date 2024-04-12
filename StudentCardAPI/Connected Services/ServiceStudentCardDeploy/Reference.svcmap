@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e89f2173-32bb-4eac-afc3-d6b66b55e5f5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceAccount.xsd" MetadataType="Schema" ID="8e06054a-5f44-424e-9810-96e2e60788bc" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceAccount.wsdl" MetadataType="Wsdl" ID="629c15ad-fa52-426c-b760-4a0157b666a8" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?wsdl" />
+    <MetadataFile FileName="ServiceAccount1.xsd" MetadataType="Schema" ID="393cd47c-70d6-49bf-9eeb-81d499c636eb" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceAccount2.xsd" MetadataType="Schema" ID="cf7a961a-75bb-4a38-a1a2-08fce6b0f555" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
