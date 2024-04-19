@@ -19,7 +19,7 @@ namespace API_StudentCard
             AccountManager = new AccountManager( );
         }
 
-        public Account AddAmountByUsername(string Username, double QuotaCHF, string Services)
+        public Account AddAmountByUsername(string Username, double QuotaCHF)
         {
             // 1) Recuperer les informations de l'account, que l'on va vouloir retrouner
             Account account = AccountManager.GetAccountByUsername(Username);
@@ -30,39 +30,74 @@ namespace API_StudentCard
                 return null;
             }
 
-            // 2) Ajouter le montant shouaité à la DB voulue 
-            int nbrLignesAffectes = AccountManager.AddAmountByUsername(Username, QuotaCHF, Services, account.AccountId);
+            // 4) Retourner l'objet Account, pour que l'application client affiche les données nécessaires à l'écran
+            return AddAmount(account, QuotaCHF);
 
-            account.AccountAmount += QuotaCHF;
-
-            // 3) Mettre a jour le nombre de feuilles imprimables
-            account.NewQuotaFeuille = AccountManager.NewQuotFeuille(account.AccountAmount);
-
-            // 4) Recuperer l'historique des transactions
-            account.ListeTransac = AccountManager.GetTransactions(account.AccountId);
-
-            // 5) Retourner l'objet Account, pour que l'application client affiche les données nécessaires à l'écran
-            return account;
         }
 
-        public Account AddAmountByUID(string UID, double QuotaCHF, string Services)
+        public Account AddAmountByUID(int UID, double QuotaCHF)
         {
+            // 1) Recuperer les informations de l'account, que l'on va vouloir retrouner
             Account account = AccountManager.GetAccountByUID(UID);
 
+            // 1.1) si compte null, on sort
             if (account == null)
             {
                 return null;
             }
-            
-            int nbrLignesAffectes = AccountManager.AddAmountByUID(UID, QuotaCHF, Services, account.AccountId);
 
+            // 4) Retourner l'objet Account, pour que l'application client affiche les données nécessaires à l'écran
+            return AddAmount(account, QuotaCHF);
+        }
+
+        private Account AddAmount(Account account, double QuotaCHF)
+        {
+            // 1) Ajouter le montant shouaité à la DB voulue 
             account.AccountAmount += QuotaCHF;
+            // 2) Re-Calculer le total de feuilles avec le nouveau total
+            account.QuotaFeuilles = AccountManager.NewQuotFeuille(account.AccountAmount);
 
-            account.NewQuotaFeuille = AccountManager.NewQuotFeuille(account.AccountAmount);
-
-            account.ListeTransac = AccountManager.GetTransactions(account.AccountId);
-
+            // 3) Ajouter à la DB
+            int nbrLignesAffectes = AccountManager.UpdateAccountByUsername(account.Username, 
+                                                                       account.AccountAmount, 
+                                                                       account.QuotaFeuilles);
             return account;
         }
+
+        public Account dimAmount(string Username, int QuotaToPrint)
+        {
+            // 1) Recuperer les informations de l'account, que l'on va vouloir retrouner
+            Account account = AccountManager.GetAccountByUsername(Username);
+
+            // 1.1) si compte null, on sort
+            if (account == null)
+            {
+                return null;
+            }
+
+            // 2) Supprimer le quota total du account
+            account.QuotaFeuilles -= QuotaToPrint;
+
+            // 3) Calculer le nouveau amount grâce à quota
+            account.AccountAmount = AccountManager.NewAmountFromQuotaFeuilles(account.QuotaFeuilles);
+
+            // 4) Update DB
+            int nbrLignesAffectes = AccountManager.UpdateAccountByUsername( account.Username,
+                                                                            account.AccountAmount,
+                                                                            account.QuotaFeuilles);
+    
+            return account;
+        }
+
+        public Account AddUser(string Username, int CardID)
+        {
+            // 2) Envoyer à la DAL pour la DB le nouveau account
+            Account account = AccountManager.AddUser(Username, CardID);
+
+            // 3) Retourner le account crée dans la DB, avec TOUTES les infos de la DB
+            return account;
+        }
+
+        
     }
 }

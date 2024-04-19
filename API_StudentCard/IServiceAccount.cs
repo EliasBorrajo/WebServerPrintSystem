@@ -12,11 +12,16 @@ namespace API_StudentCard
     public interface IServiceAccount
     {
         [OperationContract]
-        Account AddAmountByUsername(string Username, double QuotaCHF, string Services);
+        Account AddAmountByUsername(string Username, double QuotaCHF);
 
         [OperationContract]
-        Account AddAmountByUID(string UID, double QuotaCHF, string Services);
+        Account AddAmountByUID(int UID, double QuotaCHF);
+  
+        [OperationContract]
+        Account AddUser(string Username, int CardID);
 
         [OperationContract]
+        Account dimAmount(string Username, int QuotaToPrint);
+
     }
 }

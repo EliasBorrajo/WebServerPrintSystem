@@ -5,12 +5,15 @@ namespace BLL
 {
     public interface IAccountManager
     {
-        int AddAmountByUID(string UID, double QuotaCHF, string Services, int AccountId);
-        int AddAmountByUsername(string Username, double QuotaCHF, string Services, int AccountId);
-        int AddTransaction(int AccountId, double TranAmount, string Services);
-        List<Transaction> GetTransactions(int AccountId);
-        Account GetAccountByUID(string UID);
+        int UpdateAccountByUsername(string Username, double QuotaCHF, int QuotaFeuilles);
+        int DimAmountByUsername(string Username, double QuotaCHF, int QuotaFeuilles);
+
+        Account GetAccountByUID(int UID);
         Account GetAccountByUsername(string Username);
+
         int NewQuotFeuille(double AccountAmount);
+        double NewAmountFromQuotaFeuilles(int quotaFeuilles);
+
+        Account AddUser(string username, int cardID);
     }
 }

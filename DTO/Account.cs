@@ -10,23 +10,28 @@ namespace DTO
     [DataContract]
     public class Account
     {
+        // Attributs 
         [DataMember]
-        public int AccountId { get; set; } 
+        public int UiD { get; set; }
+
+        [DataMember]
+        public int CardID { get; set; }
 
         [DataMember]
         public string Username { get; set; }
 
         [DataMember]
-        public string UID { get; set; }
-
-        [DataMember]
         public double AccountAmount { get; set; }
 
         [DataMember]
-        public int NewQuotaFeuille { get; set; }
+        public int QuotaFeuilles { get; set; }
 
-        [DataMember]
-        public List<Transaction> ListeTransac { get; set; }
+        // Constructor
+        public Account(string username, int cardID)
+        {
+            this.Username = username;
+            this.CardID = cardID;
+        }
 
     }
 }

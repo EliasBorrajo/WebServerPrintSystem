@@ -12,31 +12,25 @@ namespace BLL
     {
         // ATTRIBUTS
         private IAccountDB AccountDB { get; }
-        private ITransactionDB TransactionDB { get; }
 
         // CONSTRUCTOR
         public AccountManager()
         {
             AccountDB = new AccountDB();
-            TransactionDB = new TransactionDB();
         }
 
         // METHODS
-        public int AddAmountByUsername(string Username, double QuotaCHF, string Services, int AccountId)
+        public int UpdateAccountByUsername(string Username, double QuotaCHF, int QuotaFeuilles)
         {
-            TransactionDB.AddTransaction(AccountId, QuotaCHF, Services);
-
-            return AccountDB.AddAmountByUsername( Username, QuotaCHF );
+            return AccountDB.UpdateAccountByUsername( Username, QuotaCHF, QuotaFeuilles );
         }
 
-        public int AddAmountByUID(string UID, double QuotaCHF, string Services, int AccountId)
+        public int DimAmountByUsername(string Username, double QuotaCHF, int QuotaFeuilles)
         {
-            TransactionDB.AddTransaction(AccountId, QuotaCHF, Services);
-
-            return AccountDB.AddAmountByUID(UID, QuotaCHF);
+            return AccountDB.UpdateAccountByUsername(Username, QuotaCHF, QuotaFeuilles);
         }
 
-        public Account GetAccountByUID(string UID)
+        public Account GetAccountByUID(int UID)
         {
             return AccountDB.GetAccountByUID(UID);
         }
@@ -46,21 +40,21 @@ namespace BLL
             return AccountDB.GetAccountByUsername(Username);
         }
 
-        public int AddTransaction(int AccountId, double TranAmount, string Services)
-        {
-            return TransactionDB.AddTransaction(AccountId, TranAmount, Services);
-        }
-
-        public List<Transaction> GetTransactions(int AccountId)
-        {
-            return TransactionDB.GetTransactions(AccountId);
-        }
-
         public int NewQuotFeuille(double AccountAmount)
         {
             int QuotaFeuille = (int)(AccountAmount / 0.08);
-
             return QuotaFeuille;
+        }
+
+        public double NewAmountFromQuotaFeuilles(int quotaFeuilles)
+        {
+            double AccountAmount = quotaFeuilles * 0.08;
+            return AccountAmount;
+        }
+
+        public Account AddUser(string username, int cardID)
+        {
+            return AccountDB.AddAccount(username, cardID);
         }
     }
 }
