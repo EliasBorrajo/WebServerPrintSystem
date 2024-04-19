@@ -33,5 +33,8 @@ namespace DTO
             this.CardID = cardID;
         }
 
+        public Account()
+        {
+        }
     }
 }
