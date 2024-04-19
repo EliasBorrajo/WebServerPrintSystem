@@ -50,14 +50,17 @@ namespace StudentCardAPI
             this.lblResUID = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.listBox = new System.Windows.Forms.ListBox();
+            this.txtBoxPagesRemove = new System.Windows.Forms.TextBox();
+            this.lblRemoveQuota = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPayOnline
             // 
-            this.btnPayOnline.Location = new System.Drawing.Point(472, 283);
+            this.btnPayOnline.Location = new System.Drawing.Point(577, 340);
             this.btnPayOnline.Margin = new System.Windows.Forms.Padding(2);
             this.btnPayOnline.Name = "btnPayOnline";
-            this.btnPayOnline.Size = new System.Drawing.Size(123, 48);
+            this.btnPayOnline.Size = new System.Drawing.Size(150, 58);
             this.btnPayOnline.TabIndex = 8;
             this.btnPayOnline.Text = "Pay Online";
             this.btnPayOnline.UseVisualStyleBackColor = true;
@@ -66,19 +69,19 @@ namespace StudentCardAPI
             // lblEntrees
             // 
             this.lblEntrees.AutoSize = true;
-            this.lblEntrees.Location = new System.Drawing.Point(496, 28);
+            this.lblEntrees.Location = new System.Drawing.Point(606, 34);
             this.lblEntrees.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEntrees.Name = "lblEntrees";
-            this.lblEntrees.Size = new System.Drawing.Size(65, 20);
+            this.lblEntrees.Size = new System.Drawing.Size(79, 25);
             this.lblEntrees.TabIndex = 1;
             this.lblEntrees.Text = "Entrées";
             // 
             // btnFaculties
             // 
-            this.btnFaculties.Location = new System.Drawing.Point(137, 283);
+            this.btnFaculties.Location = new System.Drawing.Point(167, 340);
             this.btnFaculties.Margin = new System.Windows.Forms.Padding(2);
             this.btnFaculties.Name = "btnFaculties";
-            this.btnFaculties.Size = new System.Drawing.Size(123, 48);
+            this.btnFaculties.Size = new System.Drawing.Size(150, 58);
             this.btnFaculties.TabIndex = 6;
             this.btnFaculties.Text = "Faculties";
             this.btnFaculties.UseVisualStyleBackColor = true;
@@ -86,10 +89,10 @@ namespace StudentCardAPI
             // 
             // btnPayementDB
             // 
-            this.btnPayementDB.Location = new System.Drawing.Point(802, 283);
+            this.btnPayementDB.Location = new System.Drawing.Point(980, 340);
             this.btnPayementDB.Margin = new System.Windows.Forms.Padding(2);
             this.btnPayementDB.Name = "btnPayementDB";
-            this.btnPayementDB.Size = new System.Drawing.Size(123, 48);
+            this.btnPayementDB.Size = new System.Drawing.Size(150, 58);
             this.btnPayementDB.TabIndex = 9;
             this.btnPayementDB.Text = "Payement DB";
             this.btnPayementDB.UseVisualStyleBackColor = true;
@@ -98,154 +101,154 @@ namespace StudentCardAPI
             // lblUID
             // 
             this.lblUID.AutoSize = true;
-            this.lblUID.Location = new System.Drawing.Point(179, 157);
+            this.lblUID.Location = new System.Drawing.Point(219, 188);
             this.lblUID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUID.Name = "lblUID";
-            this.lblUID.Size = new System.Drawing.Size(38, 20);
+            this.lblUID.Size = new System.Drawing.Size(45, 25);
             this.lblUID.TabIndex = 4;
             this.lblUID.Text = "UID";
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(179, 107);
+            this.lblUsername.Location = new System.Drawing.Point(219, 128);
             this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(83, 20);
+            this.lblUsername.Size = new System.Drawing.Size(102, 25);
             this.lblUsername.TabIndex = 5;
             this.lblUsername.Text = "Username";
             // 
             // txtBoxUsername
             // 
-            this.txtBoxUsername.Location = new System.Drawing.Point(472, 105);
+            this.txtBoxUsername.Location = new System.Drawing.Point(577, 126);
             this.txtBoxUsername.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxUsername.Name = "txtBoxUsername";
-            this.txtBoxUsername.Size = new System.Drawing.Size(124, 26);
+            this.txtBoxUsername.Size = new System.Drawing.Size(151, 29);
             this.txtBoxUsername.TabIndex = 0;
             // 
             // lblAmountAdd
             // 
             this.lblAmountAdd.AutoSize = true;
-            this.lblAmountAdd.Location = new System.Drawing.Point(179, 199);
+            this.lblAmountAdd.Location = new System.Drawing.Point(219, 239);
             this.lblAmountAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAmountAdd.Name = "lblAmountAdd";
-            this.lblAmountAdd.Size = new System.Drawing.Size(159, 20);
+            this.lblAmountAdd.Size = new System.Drawing.Size(197, 25);
             this.lblAmountAdd.TabIndex = 7;
             this.lblAmountAdd.Text = "Amount to add [CHF]";
             // 
             // txtBoxAmountAdd
             // 
-            this.txtBoxAmountAdd.Location = new System.Drawing.Point(472, 199);
+            this.txtBoxAmountAdd.Location = new System.Drawing.Point(577, 239);
             this.txtBoxAmountAdd.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxAmountAdd.Name = "txtBoxAmountAdd";
-            this.txtBoxAmountAdd.Size = new System.Drawing.Size(124, 26);
+            this.txtBoxAmountAdd.Size = new System.Drawing.Size(151, 29);
             this.txtBoxAmountAdd.TabIndex = 3;
             this.txtBoxAmountAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxAmountAdd_KeyPress);
             // 
             // txtBoxUID
             // 
-            this.txtBoxUID.Location = new System.Drawing.Point(472, 157);
+            this.txtBoxUID.Location = new System.Drawing.Point(577, 188);
             this.txtBoxUID.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxUID.Name = "txtBoxUID";
-            this.txtBoxUID.Size = new System.Drawing.Size(124, 26);
+            this.txtBoxUID.Size = new System.Drawing.Size(151, 29);
             this.txtBoxUID.TabIndex = 2;
             // 
             // lblResults
             // 
             this.lblResults.AutoSize = true;
-            this.lblResults.Location = new System.Drawing.Point(496, 370);
+            this.lblResults.Location = new System.Drawing.Point(606, 444);
             this.lblResults.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResults.Name = "lblResults";
-            this.lblResults.Size = new System.Drawing.Size(69, 20);
+            this.lblResults.Size = new System.Drawing.Size(82, 25);
             this.lblResults.TabIndex = 10;
             this.lblResults.Text = "Résultat";
             // 
             // lblOutputUID
             // 
             this.lblOutputUID.AutoSize = true;
-            this.lblOutputUID.Location = new System.Drawing.Point(179, 467);
+            this.lblOutputUID.Location = new System.Drawing.Point(219, 560);
             this.lblOutputUID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOutputUID.Name = "lblOutputUID";
-            this.lblOutputUID.Size = new System.Drawing.Size(38, 20);
+            this.lblOutputUID.Size = new System.Drawing.Size(45, 25);
             this.lblOutputUID.TabIndex = 11;
             this.lblOutputUID.Text = "UID";
             // 
             // lblOutputTotalAmount
             // 
             this.lblOutputTotalAmount.AutoSize = true;
-            this.lblOutputTotalAmount.Location = new System.Drawing.Point(179, 519);
+            this.lblOutputTotalAmount.Location = new System.Drawing.Point(219, 623);
             this.lblOutputTotalAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOutputTotalAmount.Name = "lblOutputTotalAmount";
-            this.lblOutputTotalAmount.Size = new System.Drawing.Size(149, 20);
+            this.lblOutputTotalAmount.Size = new System.Drawing.Size(187, 25);
             this.lblOutputTotalAmount.TabIndex = 13;
             this.lblOutputTotalAmount.Text = "Total Amount [CHF]";
             // 
             // lblOutputUsername
             // 
             this.lblOutputUsername.AutoSize = true;
-            this.lblOutputUsername.Location = new System.Drawing.Point(179, 415);
+            this.lblOutputUsername.Location = new System.Drawing.Point(219, 498);
             this.lblOutputUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOutputUsername.Name = "lblOutputUsername";
-            this.lblOutputUsername.Size = new System.Drawing.Size(83, 20);
+            this.lblOutputUsername.Size = new System.Drawing.Size(102, 25);
             this.lblOutputUsername.TabIndex = 12;
             this.lblOutputUsername.Text = "Username";
             // 
             // lblOutputFeuillesImprimables
             // 
             this.lblOutputFeuillesImprimables.AutoSize = true;
-            this.lblOutputFeuillesImprimables.Location = new System.Drawing.Point(179, 575);
+            this.lblOutputFeuillesImprimables.Location = new System.Drawing.Point(219, 690);
             this.lblOutputFeuillesImprimables.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOutputFeuillesImprimables.Name = "lblOutputFeuillesImprimables";
-            this.lblOutputFeuillesImprimables.Size = new System.Drawing.Size(228, 20);
+            this.lblOutputFeuillesImprimables.Size = new System.Drawing.Size(282, 25);
             this.lblOutputFeuillesImprimables.TabIndex = 14;
             this.lblOutputFeuillesImprimables.Text = "Nombre de feuilles imprimables";
             // 
             // lblResUsername
             // 
             this.lblResUsername.AutoSize = true;
-            this.lblResUsername.Location = new System.Drawing.Point(496, 415);
+            this.lblResUsername.Location = new System.Drawing.Point(606, 498);
             this.lblResUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResUsername.Name = "lblResUsername";
-            this.lblResUsername.Size = new System.Drawing.Size(29, 20);
+            this.lblResUsername.Size = new System.Drawing.Size(39, 25);
             this.lblResUsername.TabIndex = 15;
             this.lblResUsername.Text = "[...]";
             // 
             // lblResFeuillesImprimables
             // 
             this.lblResFeuillesImprimables.AutoSize = true;
-            this.lblResFeuillesImprimables.Location = new System.Drawing.Point(496, 575);
+            this.lblResFeuillesImprimables.Location = new System.Drawing.Point(606, 690);
             this.lblResFeuillesImprimables.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResFeuillesImprimables.Name = "lblResFeuillesImprimables";
-            this.lblResFeuillesImprimables.Size = new System.Drawing.Size(29, 20);
+            this.lblResFeuillesImprimables.Size = new System.Drawing.Size(39, 25);
             this.lblResFeuillesImprimables.TabIndex = 17;
             this.lblResFeuillesImprimables.Text = "[...]";
             // 
             // lblResTotalAmount
             // 
             this.lblResTotalAmount.AutoSize = true;
-            this.lblResTotalAmount.Location = new System.Drawing.Point(496, 519);
+            this.lblResTotalAmount.Location = new System.Drawing.Point(606, 623);
             this.lblResTotalAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResTotalAmount.Name = "lblResTotalAmount";
-            this.lblResTotalAmount.Size = new System.Drawing.Size(29, 20);
+            this.lblResTotalAmount.Size = new System.Drawing.Size(39, 25);
             this.lblResTotalAmount.TabIndex = 18;
             this.lblResTotalAmount.Text = "[...]";
             // 
             // lblResUID
             // 
             this.lblResUID.AutoSize = true;
-            this.lblResUID.Location = new System.Drawing.Point(496, 467);
+            this.lblResUID.Location = new System.Drawing.Point(606, 560);
             this.lblResUID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResUID.Name = "lblResUID";
-            this.lblResUID.Size = new System.Drawing.Size(29, 20);
+            this.lblResUID.Size = new System.Drawing.Size(39, 25);
             this.lblResUID.TabIndex = 19;
             this.lblResUID.Text = "[...]";
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(472, 650);
+            this.btnClear.Location = new System.Drawing.Point(577, 780);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(123, 48);
+            this.btnClear.Size = new System.Drawing.Size(150, 58);
             this.btnClear.TabIndex = 20;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -256,18 +259,50 @@ namespace StudentCardAPI
             this.listBox.BackColor = System.Drawing.SystemColors.Info;
             this.listBox.Enabled = false;
             this.listBox.FormattingEnabled = true;
-            this.listBox.ItemHeight = 20;
-            this.listBox.Location = new System.Drawing.Point(662, 419);
+            this.listBox.ItemHeight = 24;
+            this.listBox.Location = new System.Drawing.Point(809, 503);
             this.listBox.Margin = new System.Windows.Forms.Padding(2);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(410, 164);
+            this.listBox.Size = new System.Drawing.Size(500, 196);
             this.listBox.TabIndex = 23;
+            // 
+            // txtBoxPagesRemove
+            // 
+            this.txtBoxPagesRemove.Location = new System.Drawing.Point(577, 287);
+            this.txtBoxPagesRemove.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxPagesRemove.Name = "txtBoxPagesRemove";
+            this.txtBoxPagesRemove.Size = new System.Drawing.Size(151, 29);
+            this.txtBoxPagesRemove.TabIndex = 24;
+            // 
+            // lblRemoveQuota
+            // 
+            this.lblRemoveQuota.AutoSize = true;
+            this.lblRemoveQuota.Location = new System.Drawing.Point(219, 287);
+            this.lblRemoveQuota.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRemoveQuota.Name = "lblRemoveQuota";
+            this.lblRemoveQuota.Size = new System.Drawing.Size(249, 25);
+            this.lblRemoveQuota.TabIndex = 25;
+            this.lblRemoveQuota.Text = "Pages to remove [QUOTA]";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(732, 283);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(199, 38);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "Remove Pages";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnRemovePages);
             // 
             // FormClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 732);
+            this.ClientSize = new System.Drawing.Size(1369, 878);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtBoxPagesRemove);
+            this.Controls.Add(this.lblRemoveQuota);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblResUID);
@@ -320,6 +355,9 @@ namespace StudentCardAPI
         private System.Windows.Forms.Label lblResUID;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.TextBox txtBoxPagesRemove;
+        private System.Windows.Forms.Label lblRemoveQuota;
+        private System.Windows.Forms.Button button1;
     }
 }
 

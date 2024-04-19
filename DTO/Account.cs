@@ -26,7 +26,7 @@ namespace DTO
         [DataMember]
         public int QuotaFeuilles { get; set; }
 
-        // Constructor
+        // Constructors
         public Account(string username, int cardID)
         {
             this.Username = username;

@@ -29,17 +29,15 @@ namespace StudentCardAPI
                 Account account = new Account();
 
                 // 1) Vérification des entrées
-                if (txtBoxUsername.Text != String.Empty &&
+                if ( txtBoxUsername.Text != String.Empty &&
                      txtBoxAmountAdd.Text != String.Empty)
                 {
                     // 2) Récuperer le contenu des textbox
                     string username = txtBoxUsername.Text;
                     double amountToAdd = Convert.ToDouble(txtBoxAmountAdd.Text);
 
-                    string service = "Faculties";
-
                     // 3) Apeller la methode de l'API & Get le résultat
-                    account = clientAPI.AddAmountByUsername(username, amountToAdd, service);
+                    account = clientAPI.AddAmountByUsername(username, amountToAdd);
 
                     if (account == null)
                     {
@@ -51,31 +49,14 @@ namespace StudentCardAPI
 
                     // 4) Utiliser le resultat pour changer GUI
                     // 4.1) Afficher le nouveau quotas
-                    lblResTotalAmount.Text = Convert.ToString(account.AccountAmount);
+                    lblResTotalAmount.Text         = Convert.ToString(account.AccountAmount);
                     lblResFeuillesImprimables.Text = Convert.ToString(account.NewQuotaFeuille);
 
                     // 4.2) Afficher le user qui a été affecté
                     lblResUsername.Text = account.Username;
-                    lblResUID.Text = account.UID;
+                    lblResUID.Text      = account.UID;
 
-                    // 4.2) Afficher l'historique des transactions pour tel user 
-                    listBox.Items.Clear();
-                    listBox.Items.Add("Historique des transactions");
-
-                    if (account.ListeTransac.Length < 5)
-                    {
-                        for (int i = 0; i < account.ListeTransac.Length; i++)
-                        {
-                            listBox.Items.Add(account.ListeTransac[i].TranAmount + " CHF, le " + account.ListeTransac[i].TranDateHour + " de " + account.ListeTransac[i].Services);
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            listBox.Items.Add(account.ListeTransac[i].TranAmount + " CHF, le " + account.ListeTransac[i].TranDateHour + " de " + account.ListeTransac[i].Services);
-                        }
-                    }
+                    
                 }
                 else 
                 {
@@ -105,7 +86,7 @@ namespace StudentCardAPI
 
                     string service = "PayOnline";
 
-                    account = clientAPI.AddAmountByUsername(username, amountToAdd, service);
+                    account = clientAPI.AddAmountByUsername(username, amountToAdd);
 
                     if (account == null)
                     {
@@ -116,30 +97,14 @@ namespace StudentCardAPI
                     }
 
 
-                    lblResTotalAmount.Text = Convert.ToString(account.AccountAmount);
-                    lblResFeuillesImprimables.Text = Convert.ToString(account.NewQuotaFeuille);
+                    lblResTotalAmount.Text          = Convert.ToString(account.AccountAmount);
+                    lblResFeuillesImprimables.Text  = Convert.ToString(account.NewQuotaFeuille);
 
                     
                     lblResUsername.Text = account.Username;
-                    lblResUID.Text = account.UID;
+                    lblResUID.Text      = account.UID;
 
-                    listBox.Items.Clear();
-                    listBox.Items.Add("Historique des transactions");
-
-                    if (account.ListeTransac.Length < 5)
-                    {
-                        for (int i = 0; i < account.ListeTransac.Length; i++)
-                        {
-                            listBox.Items.Add(account.ListeTransac[i].TranAmount + " CHF, le " + account.ListeTransac[i].TranDateHour + " de " + account.ListeTransac[i].Services);
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            listBox.Items.Add(account.ListeTransac[i].TranAmount + " CHF, le " + account.ListeTransac[i].TranDateHour + " de " + account.ListeTransac[i].Services);
-                        }
-                    }
+                   
                 }
                 else
                 {
@@ -169,7 +134,7 @@ namespace StudentCardAPI
 
                     string service = "PaymentDB";
 
-                    account = clientAPI.AddAmountByUID(uid, amountToAdd, service);
+                    account = clientAPI.AddAmountByUID(uid, amountToAdd);
 
                     if (account == null)
                     {
@@ -184,25 +149,6 @@ namespace StudentCardAPI
 
                     lblResUsername.Text = account.Username;
                     lblResUID.Text = account.UID;
-
-
-                    listBox.Items.Clear();
-                    listBox.Items.Add("Historique des transactions");
-
-                    if (account.ListeTransac.Length < 5)
-                    {
-                        for (int i = 0; i < account.ListeTransac.Length; i++)
-                        {
-                            listBox.Items.Add(account.ListeTransac[i].TranAmount + " CHF, le " + account.ListeTransac[i].TranDateHour + " de " + account.ListeTransac[i].Services);
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            listBox.Items.Add(account.ListeTransac[i].TranAmount + " CHF, le " + account.ListeTransac[i].TranDateHour + " de " + account.ListeTransac[i].Services);
-                        }
-                    }
                 }
                 else
                 {
@@ -220,12 +166,12 @@ namespace StudentCardAPI
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtBoxUsername.Text     = "";
-            txtBoxUID.Text               = "";
-            txtBoxAmountAdd.Text  = "";
+            txtBoxUID.Text          = "";
+            txtBoxAmountAdd.Text    = "";
 
             lblResUsername.Text     = "[...]";
-            lblResUID.Text               = "[...]";
-            lblResTotalAmount.Text = "[...]";
+            lblResUID.Text          = "[...]";
+            lblResTotalAmount.Text  = "[...]";
             lblResFeuillesImprimables.Text = "[...]";
 
             listBox.Items.Clear();
@@ -238,6 +184,52 @@ namespace StudentCardAPI
                 e.Handled = true;
             }
             base.OnKeyPress(e);
+        }
+
+        private void btnRemovePages(object sender, EventArgs e)
+        {
+            try
+            {
+                ServiceAccountClient clientAPI = new ServiceAccountClient();
+                Account account = new Account();
+
+                if ( txtBoxUsername.Text != String.Empty &&
+                     txtBoxPagesRemove.Text != String.Empty)
+                {
+                    string username = txtBoxUsername.Text;
+                    int pagesRemove = Convert.ToInt16(txtBoxPagesRemove.Text);
+
+                    string service = "PaymentDB";
+
+                    account = clientAPI.dimAmount(username, pagesRemove);
+
+                    if (account == null)
+                    {
+                        listBox.Items.Clear();
+                        listBox.Items.Add("Compte non valide");
+
+                        return;
+                    }
+
+                    lblResTotalAmount.Text = Convert.ToString(account.AccountAmount);
+                    lblResFeuillesImprimables.Text = Convert.ToString(account.NewQuotaFeuille);
+
+                    lblResUsername.Text = account.Username;
+                    lblResUID.Text = account.UID;
+                   
+                }
+                else
+                {
+                    listBox.Items.Clear();
+                    listBox.Items.Add("UID ou montant vide");
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("ERROR - BUTTON PaymentDB");
+                throw exception;
+            }
+
         }
     }
 }
