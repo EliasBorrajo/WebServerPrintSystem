@@ -19,13 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8080/ServiceAccount.svc?singleWsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiceAccount.xsd" MetadataType="Schema" ID="8e06054a-5f44-424e-9810-96e2e60788bc" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?xsd=xsd2" />
-    <MetadataFile FileName="ServiceAccount.wsdl" MetadataType="Wsdl" ID="629c15ad-fa52-426c-b760-4a0157b666a8" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?wsdl" />
-    <MetadataFile FileName="ServiceAccount1.xsd" MetadataType="Schema" ID="393cd47c-70d6-49bf-9eeb-81d499c636eb" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?xsd=xsd1" />
-    <MetadataFile FileName="ServiceAccount2.xsd" MetadataType="Schema" ID="cf7a961a-75bb-4a38-a1a2-08fce6b0f555" SourceId="1" SourceUrl="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceAccount1.wsdl" MetadataType="Wsdl" ID="437d18cb-3847-4cc4-b4f9-8cf9d7e3197e" SourceId="1" SourceUrl="http://localhost:8080/ServiceAccount.svc?singleWsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

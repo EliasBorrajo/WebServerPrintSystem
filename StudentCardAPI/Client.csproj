@@ -82,16 +82,7 @@
     <None Include="Connected Services\ServiceStudentCardDeploy\Client.ServiceStudentCardDeploy.Account.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServiceStudentCardDeploy\ServiceAccount.wsdl" />
-    <None Include="Connected Services\ServiceStudentCardDeploy\ServiceAccount.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceStudentCardDeploy\ServiceAccount1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceStudentCardDeploy\ServiceAccount2.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Connected Services\ServiceStudentCardDeploy\ServiceAccount1.wsdl" />
     <None Include="Connected Services\ServiceStudentCard\Client.ServiceStudentCard.Account.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

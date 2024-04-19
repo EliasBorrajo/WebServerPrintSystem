@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="oe353oaYEWcYX5neFlNwCVQL3Rx+zTW8PKtGOqcGtec=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="lOrzjbNw6uOh4f2ANUYLT3qp7EY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IServiceAccount1">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IServiceAccount1" contract="ServiceStudentCardDeploy.IServiceAccount" bindingType="basicHttpBinding" address="http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc" bindingConfiguration="BasicHttpBinding_IServiceAccount1">
+    <endpoint name="BasicHttpBinding_IServiceAccount1" contract="ServiceStudentCardDeploy.IServiceAccount" bindingType="basicHttpBinding" address="http://localhost:8080/ServiceAccount.svc" bindingConfiguration="BasicHttpBinding_IServiceAccount1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://153.109.124.35:83/ELMIJO_Service/ServiceAccount.svc</serializedValue>
+          <serializedValue>http://localhost:8080/ServiceAccount.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

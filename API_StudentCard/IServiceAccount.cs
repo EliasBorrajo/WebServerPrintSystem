@@ -16,5 +16,7 @@ namespace API_StudentCard
 
         [OperationContract]
         Account AddAmountByUID(string UID, double QuotaCHF, string Services);
+
+        [OperationContract]
     }
 }
