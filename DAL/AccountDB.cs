@@ -128,12 +128,24 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
+                    // Check if Username or CardID already exists
+                    string checkQuery = "SELECT COUNT(*) FROM ACCOUNT WHERE USERNAME = @Username OR CARDID = @CardID";
+                    SqlCommand checkCmd = new SqlCommand(checkQuery, cn);
+                    checkCmd.Parameters.AddWithValue("@CardID", CardID);
+                    checkCmd.Parameters.AddWithValue("@Username", Username);
+
+                    cn.Open();
+                    int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (exists > 0)
+                    {
+                        return null;
+                    }
+
                     string query = "INSERT INTO ACCOUNT (CARDID, USERNAME, AMOUNTCHF, QUOTAFEUILLE) VALUES (@CardID, @Username, 0, 0); SELECT SCOPE_IDENTITY();";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@CardID", CardID);
                     cmd.Parameters.AddWithValue("@Username", Username);
 
-                    cn.Open();
                     int newAccountId = Convert.ToInt32(cmd.ExecuteScalar());
 
                     // Fetch the newly inserted account

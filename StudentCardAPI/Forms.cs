@@ -161,9 +161,11 @@ namespace StudentCardAPI
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            txtBoxCardID.Text       = "";
             txtBoxUsername.Text     = "";
             txtBoxUID.Text          = "";
             txtBoxAmountAdd.Text    = "";
+            txtBoxPagesRemove.Text  = "";
 
             lblResUsername.Text     = "[...]";
             lblResUID.Text          = "[...]";
@@ -193,9 +195,7 @@ namespace StudentCardAPI
                      txtBoxPagesRemove.Text != String.Empty)
                 {
                     string username = txtBoxUsername.Text;
-                    int pagesRemove = Convert.ToInt16(txtBoxPagesRemove.Text);
-
-                    string service = "PaymentDB";
+                    int pagesRemove = Convert.ToInt32(txtBoxPagesRemove.Text);
 
                     account = clientAPI.dimAmount(username, pagesRemove);
 
@@ -222,10 +222,47 @@ namespace StudentCardAPI
             }
             catch (Exception exception)
             {
-                Console.WriteLine("ERROR - BUTTON PaymentDB");
+                Console.WriteLine("ERROR - BUTTON RemovePage");
                 throw exception;
             }
 
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ServiceAccountClient clientAPI = new ServiceAccountClient();
+                Account account = new Account();
+
+                if (txtBoxUsername.Text != String.Empty &&
+                     txtBoxCardID.Text != String.Empty)
+                {
+                    string username = txtBoxUsername.Text;
+                    int cardID = Convert.ToInt32(txtBoxCardID.Text);
+
+                    account = clientAPI.AddUser(username, cardID);
+
+                    if (account != null)
+                    {
+                        lblResUsername.Text = account.Username + " créé";
+                    }
+                    else
+                    {
+                        lblResUsername.Text = "Username ou card ID existe déjà.";
+                    }
+                }
+                else
+                {
+                    listBox.Items.Clear();
+                    listBox.Items.Add("Username ou card ID vide");
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("ERROR - BUTTON AddUser");
+                throw exception;
+            }
         }
     }
 }
