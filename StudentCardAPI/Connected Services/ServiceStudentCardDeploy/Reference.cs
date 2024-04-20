@@ -26,16 +26,13 @@ namespace Client.ServiceStudentCardDeploy {
         private double AccountAmountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AccountIdField;
+        private int CardIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.ServiceStudentCardDeploy.Transaction[] ListeTransacField;
+        private int QuotaFeuillesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NewQuotaFeuilleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UIDField;
+        private int UiDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -64,53 +61,40 @@ namespace Client.ServiceStudentCardDeploy {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AccountId {
+        public int CardID {
             get {
-                return this.AccountIdField;
+                return this.CardIDField;
             }
             set {
-                if ((this.AccountIdField.Equals(value) != true)) {
-                    this.AccountIdField = value;
-                    this.RaisePropertyChanged("AccountId");
+                if ((this.CardIDField.Equals(value) != true)) {
+                    this.CardIDField = value;
+                    this.RaisePropertyChanged("CardID");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.ServiceStudentCardDeploy.Transaction[] ListeTransac {
+        public int QuotaFeuilles {
             get {
-                return this.ListeTransacField;
+                return this.QuotaFeuillesField;
             }
             set {
-                if ((object.ReferenceEquals(this.ListeTransacField, value) != true)) {
-                    this.ListeTransacField = value;
-                    this.RaisePropertyChanged("ListeTransac");
+                if ((this.QuotaFeuillesField.Equals(value) != true)) {
+                    this.QuotaFeuillesField = value;
+                    this.RaisePropertyChanged("QuotaFeuilles");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NewQuotaFeuille {
+        public int UiD {
             get {
-                return this.NewQuotaFeuilleField;
+                return this.UiDField;
             }
             set {
-                if ((this.NewQuotaFeuilleField.Equals(value) != true)) {
-                    this.NewQuotaFeuilleField = value;
-                    this.RaisePropertyChanged("NewQuotaFeuille");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UID {
-            get {
-                return this.UIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UIDField, value) != true)) {
-                    this.UIDField = value;
-                    this.RaisePropertyChanged("UID");
+                if ((this.UiDField.Equals(value) != true)) {
+                    this.UiDField = value;
+                    this.RaisePropertyChanged("UiD");
                 }
             }
         }
@@ -138,114 +122,33 @@ namespace Client.ServiceStudentCardDeploy {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Transaction", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class Transaction : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AccountIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ServicesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private double TranAmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TranDateHourField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AccountId {
-            get {
-                return this.AccountIdField;
-            }
-            set {
-                if ((this.AccountIdField.Equals(value) != true)) {
-                    this.AccountIdField = value;
-                    this.RaisePropertyChanged("AccountId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Services {
-            get {
-                return this.ServicesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ServicesField, value) != true)) {
-                    this.ServicesField = value;
-                    this.RaisePropertyChanged("Services");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public double TranAmount {
-            get {
-                return this.TranAmountField;
-            }
-            set {
-                if ((this.TranAmountField.Equals(value) != true)) {
-                    this.TranAmountField = value;
-                    this.RaisePropertyChanged("TranAmount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime TranDateHour {
-            get {
-                return this.TranDateHourField;
-            }
-            set {
-                if ((this.TranDateHourField.Equals(value) != true)) {
-                    this.TranDateHourField = value;
-                    this.RaisePropertyChanged("TranDateHour");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceStudentCardDeploy.IServiceAccount")]
     public interface IServiceAccount {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/AddAmountByUsername", ReplyAction="http://tempuri.org/IServiceAccount/AddAmountByUsernameResponse")]
-        Client.ServiceStudentCardDeploy.Account AddAmountByUsername(string Username, double QuotaCHF, string Services);
+        Client.ServiceStudentCardDeploy.Account AddAmountByUsername(string Username, double QuotaCHF);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/AddAmountByUsername", ReplyAction="http://tempuri.org/IServiceAccount/AddAmountByUsernameResponse")]
-        System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUsernameAsync(string Username, double QuotaCHF, string Services);
+        System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUsernameAsync(string Username, double QuotaCHF);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/AddAmountByUID", ReplyAction="http://tempuri.org/IServiceAccount/AddAmountByUIDResponse")]
-        Client.ServiceStudentCardDeploy.Account AddAmountByUID(string UID, double QuotaCHF, string Services);
+        Client.ServiceStudentCardDeploy.Account AddAmountByUID(int UID, double QuotaCHF);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/AddAmountByUID", ReplyAction="http://tempuri.org/IServiceAccount/AddAmountByUIDResponse")]
-        System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUIDAsync(string UID, double QuotaCHF, string Services);
+        System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUIDAsync(int UID, double QuotaCHF);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/AddUser", ReplyAction="http://tempuri.org/IServiceAccount/AddUserResponse")]
+        Client.ServiceStudentCardDeploy.Account AddUser(string Username, int CardID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/AddUser", ReplyAction="http://tempuri.org/IServiceAccount/AddUserResponse")]
+        System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddUserAsync(string Username, int CardID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/dimAmount", ReplyAction="http://tempuri.org/IServiceAccount/dimAmountResponse")]
+        Client.ServiceStudentCardDeploy.Account dimAmount(string Username, int QuotaToPrint);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAccount/dimAmount", ReplyAction="http://tempuri.org/IServiceAccount/dimAmountResponse")]
+        System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> dimAmountAsync(string Username, int QuotaToPrint);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -275,20 +178,36 @@ namespace Client.ServiceStudentCardDeploy {
                 base(binding, remoteAddress) {
         }
         
-        public Client.ServiceStudentCardDeploy.Account AddAmountByUsername(string Username, double QuotaCHF, string Services) {
-            return base.Channel.AddAmountByUsername(Username, QuotaCHF, Services);
+        public Client.ServiceStudentCardDeploy.Account AddAmountByUsername(string Username, double QuotaCHF) {
+            return base.Channel.AddAmountByUsername(Username, QuotaCHF);
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUsernameAsync(string Username, double QuotaCHF, string Services) {
-            return base.Channel.AddAmountByUsernameAsync(Username, QuotaCHF, Services);
+        public System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUsernameAsync(string Username, double QuotaCHF) {
+            return base.Channel.AddAmountByUsernameAsync(Username, QuotaCHF);
         }
         
-        public Client.ServiceStudentCardDeploy.Account AddAmountByUID(string UID, double QuotaCHF, string Services) {
-            return base.Channel.AddAmountByUID(UID, QuotaCHF, Services);
+        public Client.ServiceStudentCardDeploy.Account AddAmountByUID(int UID, double QuotaCHF) {
+            return base.Channel.AddAmountByUID(UID, QuotaCHF);
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUIDAsync(string UID, double QuotaCHF, string Services) {
-            return base.Channel.AddAmountByUIDAsync(UID, QuotaCHF, Services);
+        public System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddAmountByUIDAsync(int UID, double QuotaCHF) {
+            return base.Channel.AddAmountByUIDAsync(UID, QuotaCHF);
+        }
+        
+        public Client.ServiceStudentCardDeploy.Account AddUser(string Username, int CardID) {
+            return base.Channel.AddUser(Username, CardID);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> AddUserAsync(string Username, int CardID) {
+            return base.Channel.AddUserAsync(Username, CardID);
+        }
+        
+        public Client.ServiceStudentCardDeploy.Account dimAmount(string Username, int QuotaToPrint) {
+            return base.Channel.dimAmount(Username, QuotaToPrint);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceStudentCardDeploy.Account> dimAmountAsync(string Username, int QuotaToPrint) {
+            return base.Channel.dimAmountAsync(Username, QuotaToPrint);
         }
     }
 }

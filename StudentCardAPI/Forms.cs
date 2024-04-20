@@ -50,11 +50,11 @@ namespace StudentCardAPI
                     // 4) Utiliser le resultat pour changer GUI
                     // 4.1) Afficher le nouveau quotas
                     lblResTotalAmount.Text         = Convert.ToString(account.AccountAmount);
-                    lblResFeuillesImprimables.Text = Convert.ToString(account.NewQuotaFeuille);
+                    lblResFeuillesImprimables.Text = Convert.ToString(account.QuotaFeuilles);
 
                     // 4.2) Afficher le user qui a été affecté
                     lblResUsername.Text = account.Username;
-                    lblResUID.Text      = account.UID;
+                    lblResUID.Text      = Convert.ToString(account.UiD);
 
                     
                 }
@@ -84,8 +84,6 @@ namespace StudentCardAPI
                     string username = txtBoxUsername.Text;
                     double amountToAdd = Convert.ToDouble(txtBoxAmountAdd.Text);
 
-                    string service = "PayOnline";
-
                     account = clientAPI.AddAmountByUsername(username, amountToAdd);
 
                     if (account == null)
@@ -98,13 +96,13 @@ namespace StudentCardAPI
 
 
                     lblResTotalAmount.Text          = Convert.ToString(account.AccountAmount);
-                    lblResFeuillesImprimables.Text  = Convert.ToString(account.NewQuotaFeuille);
+                    lblResFeuillesImprimables.Text  = Convert.ToString(account.QuotaFeuilles);
 
-                    
+
                     lblResUsername.Text = account.Username;
-                    lblResUID.Text      = account.UID;
+                    lblResUID.Text      = Convert.ToString(account.UiD);
 
-                   
+
                 }
                 else
                 {
@@ -129,10 +127,8 @@ namespace StudentCardAPI
                 if (txtBoxUID.Text != String.Empty &&
                      txtBoxAmountAdd.Text != String.Empty)
                 {
-                    string uid = txtBoxUID.Text;
+                    int uid = Convert.ToInt16(txtBoxUID.Text);
                     double amountToAdd = Convert.ToDouble(txtBoxAmountAdd.Text);
-
-                    string service = "PaymentDB";
 
                     account = clientAPI.AddAmountByUID(uid, amountToAdd);
 
@@ -145,10 +141,10 @@ namespace StudentCardAPI
                     }
 
                     lblResTotalAmount.Text = Convert.ToString(account.AccountAmount);
-                    lblResFeuillesImprimables.Text = Convert.ToString(account.NewQuotaFeuille);
+                    lblResFeuillesImprimables.Text = Convert.ToString(account.QuotaFeuilles);
 
                     lblResUsername.Text = account.Username;
-                    lblResUID.Text = account.UID;
+                    lblResUID.Text = Convert.ToString(account.UiD);
                 }
                 else
                 {
@@ -212,11 +208,11 @@ namespace StudentCardAPI
                     }
 
                     lblResTotalAmount.Text = Convert.ToString(account.AccountAmount);
-                    lblResFeuillesImprimables.Text = Convert.ToString(account.NewQuotaFeuille);
+                    lblResFeuillesImprimables.Text = Convert.ToString(account.QuotaFeuilles);
 
                     lblResUsername.Text = account.Username;
-                    lblResUID.Text = account.UID;
-                   
+                    lblResUID.Text = Convert.ToString(account.UiD);
+
                 }
                 else
                 {
