@@ -127,7 +127,7 @@ namespace StudentCardAPI
                 if (txtBoxUID.Text != String.Empty &&
                      txtBoxAmountAdd.Text != String.Empty)
                 {
-                    int uid = Convert.ToInt16(txtBoxUID.Text);
+                    int uid = Convert.ToInt32(txtBoxUID.Text);
                     double amountToAdd = Convert.ToDouble(txtBoxAmountAdd.Text);
 
                     account = clientAPI.AddAmountByUID(uid, amountToAdd);
