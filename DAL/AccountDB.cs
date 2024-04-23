@@ -151,15 +151,34 @@ namespace DAL
                 cn = new SqlConnection(connectionString);
                 cn.Open();
 
-                string query = "INSERT INTO ACCOUNT (CARDID, USERNAME, AMOUNTCHF, QUOTAFEUILLE) VALUES (@CardID, @Username, 0, 0); SELECT SCOPE_IDENTITY();";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@CardID", CardID);
-                cmd.Parameters.AddWithValue("@Username", Username);
+                // Check if the username or cardID already exists
+                string checkQuery = "SELECT COUNT(*) FROM ACCOUNT WHERE USERNAME = @Username OR CARDID = @CardID";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, cn);
+                checkCmd.Parameters.AddWithValue("@Username", Username);
+                checkCmd.Parameters.AddWithValue("@CardID", CardID);
+                int count = Convert.ToInt32(checkCmd.ExecuteScalar());
 
-                int newAccountId = Convert.ToInt32(cmd.ExecuteScalar());
+                if (count > 0)
+                {
+                    // Username or cardID already exists, return empty Account with Username "AlreadyExists"
+                    account = new Account();
+                    account.Username = "AlreadyExists";
+                    account.CardID = -1;
+                }
+                // Account doesn't exist yet, so INSERT it into the DB
+                else
+                {
+                    // Username and cardID are unique, proceed with account creation
+                    string insertQuery = "INSERT INTO ACCOUNT (CARDID, USERNAME, AMOUNTCHF, QUOTAFEUILLE) VALUES (@CardID, @Username, 0, 0); SELECT SCOPE_IDENTITY();";
+                    SqlCommand insertCmd = new SqlCommand(insertQuery, cn);
+                    insertCmd.Parameters.AddWithValue("@CardID", CardID);
+                    insertCmd.Parameters.AddWithValue("@Username", Username);
 
-                // Fetch the newly inserted account
-                account = GetAccountByUID(newAccountId);
+                    int newAccountId = Convert.ToInt32(insertCmd.ExecuteScalar());
+
+                    // Fetch the newly inserted account
+                    account = GetAccountByUID(newAccountId);
+                }
             }
             catch (Exception e)
             {
@@ -178,5 +197,6 @@ namespace DAL
 
             return account;
         }
+
     }
 }
