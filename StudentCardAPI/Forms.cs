@@ -235,7 +235,7 @@ namespace StudentCardAPI
                 ServiceAccountClient clientAPI = new ServiceAccountClient();
                 Account account = new Account();
 
-                if (txtBoxUsername.Text != String.Empty &&
+                if ( txtBoxUsername.Text != String.Empty &&
                      txtBoxCardID.Text != String.Empty)
                 {
                     string username = txtBoxUsername.Text;
@@ -246,6 +246,7 @@ namespace StudentCardAPI
                     if (account != null)
                     {
                         lblResUsername.Text = account.Username + " créé";
+                        listBox.Text = account.Username + " " + account.QuotaFeuilles + " " + account.CardID;
                     }
                     else
                     {

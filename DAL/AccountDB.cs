@@ -21,26 +21,32 @@ namespace DAL
         public int UpdateAccountByUsername(string Username, double QuotaCHF, int quotaFeuilles)
         {
             int result_NbrLignesAffectesByQuery = 0;
+            SqlConnection cn = null;
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
-                {
-                    string query = "UPDATE ACCOUNT SET AMOUNTCHF = @QuotaCHF, QUOTAFEUILLE = @quotaFeuilles WHERE USERNAME = @username";
-                    SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@QuotaCHF", QuotaCHF);
-                    cmd.Parameters.AddWithValue("@quotaFeuilles", quotaFeuilles);
-                    cmd.Parameters.AddWithValue("@username", Username);
+                cn = new SqlConnection(connectionString);
+                cn.Open();
 
-                    cn.Open();
+                string query = "UPDATE ACCOUNT SET AMOUNTCHF = @QuotaCHF, QUOTAFEUILLE = @quotaFeuilles WHERE USERNAME = @username";
+                SqlCommand cmd = new SqlCommand(query, cn);
+                cmd.Parameters.AddWithValue("@QuotaCHF", QuotaCHF);
+                cmd.Parameters.AddWithValue("@quotaFeuilles", quotaFeuilles);
+                cmd.Parameters.AddWithValue("@username", Username);
 
-                    result_NbrLignesAffectesByQuery = cmd.ExecuteNonQuery();
-                }
+                result_NbrLignesAffectesByQuery = cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
                 Console.WriteLine("ERROR : ACCOUNT DB - UPDATE ACCOUNT :");
                 throw e;
+            }
+            finally
+            {
+                if (cn != null)
+                {
+                    cn.Close();
+                }
             }
 
             return result_NbrLignesAffectesByQuery;
@@ -49,28 +55,28 @@ namespace DAL
         public Account GetAccountByUID(int UID)
         {
             Account account = null;
+            SqlConnection cn = null;
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                cn = new SqlConnection(connectionString);
+                cn.Open();
+
+                string query = "SELECT * FROM ACCOUNT WHERE UID = @UID";
+                SqlCommand cmd = new SqlCommand(query, cn);
+                cmd.Parameters.AddWithValue("@UID", UID);
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    string query = "SELECT * FROM ACCOUNT WHERE UID = @UID";
-                    SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@UID", UID);
-
-                    cn.Open();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    if (dr.Read())
                     {
-                        if (dr.Read())
-                        {
-                            account = new Account();
+                        account = new Account();
 
-                            account.UiD = (int)dr["UID"];
-                            account.CardID = (int)dr["CARDID"];
-                            account.Username = (string)dr["USERNAME"];
-                            account.AccountAmount = (double)dr["AMOUNTCHF"];
-                            account.QuotaFeuilles = (int)dr["QUOTAFEUILLE"];
-                        }
+                        account.UiD = (int)dr["UID"];
+                        account.CardID = (int)dr["CARDID"];
+                        account.Username = (string)dr["USERNAME"];
+                        account.AccountAmount = (double)dr["AMOUNTCHF"];
+                        account.QuotaFeuilles = (int)dr["QUOTAFEUILLE"];
                     }
                 }
             }
@@ -79,6 +85,13 @@ namespace DAL
                 Console.WriteLine("ERROR : ACCOUNT DB - GET ACCOUNT BY UID : ");
                 throw e;
             }
+            finally
+            {
+                if (cn != null)
+                {
+                    cn.Close();
+                }
+            }
 
             return account;
         }
@@ -86,28 +99,28 @@ namespace DAL
         public Account GetAccountByUsername(string Username)
         {
             Account account = null;
+            SqlConnection cn = null;
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
+                cn = new SqlConnection(connectionString);
+                cn.Open();
+
+                string query = "SELECT * FROM ACCOUNT WHERE USERNAME = @Username";
+                SqlCommand cmd = new SqlCommand(query, cn);
+                cmd.Parameters.AddWithValue("@Username", Username);
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    string query = "SELECT * FROM ACCOUNT WHERE USERNAME = @Username";
-                    SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@Username", Username);
-
-                    cn.Open();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    if (dr.Read())
                     {
-                        if (dr.Read())
-                        {
-                            account = new Account();
+                        account = new Account();
 
-                            account.UiD = (int)dr["UID"];
-                            account.CardID = (int)dr["CARDID"];
-                            account.Username = (string)dr["USERNAME"];
-                            account.AccountAmount = (double)dr["AMOUNTCHF"];
-                            account.QuotaFeuilles = (int)dr["QUOTAFEUILLE"];
-                        }
+                        account.UiD = (int)dr["UID"];
+                        account.CardID = (int)dr["CARDID"];
+                        account.Username = (string)dr["USERNAME"];
+                        account.AccountAmount = (double)dr["AMOUNTCHF"];
+                        account.QuotaFeuilles = (int)dr["QUOTAFEUILLE"];
                     }
                 }
             }
@@ -116,46 +129,51 @@ namespace DAL
                 Console.WriteLine("ERROR : ACCOUNT DB - GET ACCOUNT BY USERNAME : ");
                 throw e;
             }
+            finally
+            {
+                if (cn != null)
+                {
+                    cn.Close();
+                }
+            }
 
             return account;
         }
 
+
         public Account AddAccount(string Username, int CardID)
         {
             Account account = null;
+            SqlConnection cn = null;
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
-                {
-                    // Check if Username or CardID already exists
-                    string checkQuery = "SELECT COUNT(*) FROM ACCOUNT WHERE USERNAME = @Username OR CARDID = @CardID";
-                    SqlCommand checkCmd = new SqlCommand(checkQuery, cn);
-                    checkCmd.Parameters.AddWithValue("@CardID", CardID);
-                    checkCmd.Parameters.AddWithValue("@Username", Username);
+                cn = new SqlConnection(connectionString);
+                cn.Open();
 
-                    cn.Open();
-                    int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
-                    if (exists > 0)
-                    {
-                        return null;
-                    }
+                string query = "INSERT INTO ACCOUNT (CARDID, USERNAME, AMOUNTCHF, QUOTAFEUILLE) VALUES (@CardID, @Username, 0, 0); SELECT SCOPE_IDENTITY();";
+                SqlCommand cmd = new SqlCommand(query, cn);
+                cmd.Parameters.AddWithValue("@CardID", CardID);
+                cmd.Parameters.AddWithValue("@Username", Username);
 
-                    string query = "INSERT INTO ACCOUNT (CARDID, USERNAME, AMOUNTCHF, QUOTAFEUILLE) VALUES (@CardID, @Username, 0, 0); SELECT SCOPE_IDENTITY();";
-                    SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@CardID", CardID);
-                    cmd.Parameters.AddWithValue("@Username", Username);
+                int newAccountId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    int newAccountId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    // Fetch the newly inserted account
-                    account = GetAccountByUID(newAccountId);
-                }
+                // Fetch the newly inserted account
+                account = GetAccountByUID(newAccountId);
             }
             catch (Exception e)
             {
                 Console.WriteLine("ERROR : ACCOUNT DB - ADD ACCOUNT : ");
+                // Log the exception or handle it appropriately
                 throw e;
+            }
+            finally
+            {
+                // Ensure the connection is closed even if an exception occurs
+                if (cn != null)
+                {
+                    cn.Close();
+                }
             }
 
             return account;
