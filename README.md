@@ -51,4 +51,4 @@ All endpoints return **JSON** (except `/card` which streams an image).
 
 * **Elias Borrajo**
 * **Milena Lonfat**
-* **Sergio Gomes**
+* **Jonathan Bourquin**
