@@ -69,4 +69,3 @@ The service exposes WSDL operations accessible via an endpoint. A sample Windows
 **Information Technologies Infrastructure Library (ITIL) – Service Management**
 **Instructors: David Wannier & Alain Duc, HES-SO Valais-Wallis**
 
-*(Original README kept for historical reference)*
