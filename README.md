@@ -1,54 +1,72 @@
-# WebServerPrintSystem 🖨️🗂️
+# StudentCard SOAP Microservice for PrintSystem 🖨️🗂️
 
-> **Student‑card printing micro‑service built with ASP.NET Core 6, EF Core & SQL Server**
-
----
-
-## 1 · Purpose
-
-This project exposes a **SOAP API** that partner apps (e.g. university intranet or self‑service kiosks) can call to:
-
-1. **Register students** (name, photo, study path).
-2. **Generate & queue** printable ID‑card.
-3. **Track** the print status (waiting → printed → collected).
-4. **Retrieve statistics** (cards/day, failed jobs, ink usage).
-
-The solution follows a classic multi‑tier layout:
-
-| Layer  | Folder            | Responsibilities                          |
-| ------ | ----------------- | ----------------------------------------- |
-| API    | `StudentCardAPI/` | Controllers, DI, Swagger, DTO mappers     |
-| BLL    | `BLL/`            | Domain logic, validation, queues, pricing |
-| DAL    | `DAL/`            | EF Core DbContext & repositories          |
-| Models | `DTO/`            | Data‑transfer objects (clean JSON)        |
-| SQL    | `Annexes/`        | Seed scripts & diagrams                   |
-
-> ---
-
-## 2 · Features (MVP)
-
-* 🆔 **Student CRUD** (GET · POST · PUT · DELETE / students).
-* 🖨️ **Print queue** – background hosted service polls pending jobs & writes PDFs to a hot‑folder.
-* 📊 **Admin stats endpoint** / metrics (total, per day, avg time).
-* 📝 **Swagger UI** auto‑generated. 
+> *SOAP service for student card printing, exposed via WCF on .NET Framework 4.7.2, consumable by a Windows Forms application.*
 
 ---
 
-## 3 · Sample requests
+## 📚 Project Description
 
-```http
-GET /api/students                                       -- list all students
-POST /api/students                                      -- add student
-GET /api/students/{id}/card                             -- get card preview (PNG)
-POST /api/print-jobs                                    -- enqueue print
-GET /api/print-jobs/pending                             -- queue status
-GET /api/metrics                                        -- global stats
-```
+This project provides a SOAP service implemented with WCF (.NET Framework 4.7.2) that allows:
 
-All endpoints return **JSON** (except `/card` which streams an image).
+* Registering students
+* Managing print quotas
+* Submitting and tracking student card print jobs
 
-## 4 · Authors
+The service exposes WSDL operations accessible via an endpoint. A sample Windows Forms client illustrates consuming the service.
 
-* **Elias Borrajo**
-* **Milena Lonfat**
-* **Jonathan Bourquin**
+## 🧪 Technologies Used
+
+| Type        | Name                                   | Version              |
+| ----------- | -------------------------------------- | -------------------- |
+| Language    | C#                                     |                      |
+| Build Tool  | MSBuild (Visual Studio)                |                      |
+| Framework   | WCF (Windows Communication Foundation) | .NET Framework 4.7.2 |
+| Database    | SQL Server                             | 2017                 |
+| Data Access | ADO.NET                                | built-in             |
+|             |                                        |                      |
+
+## 🎯 Learning Objectives
+
+* Expose and consume SOAP services with WCF
+* Design and use Data Transfer Objects (DTOs) in XML
+* Implement database operations via ADO.NET
+* Develop a Windows Forms application to consume the service
+* Monitor and report service metrics
+
+## 🏗 Project Structure
+
+* `/API_StudentCard` — WCF implementation (`.svc` files, operation contracts)
+* `/DAL` — data access layer (ADO.NET repositories)
+* `/DTO` — XML-serializable request/response objects
+* `/StudentCardAPI` — Windows Forms application consuming the service
+* `/Annexes` — SQL scripts for database setup
+
+## 📘 Documentation & Diagrams
+
+* **WSDL endpoint**: `/API_StudentCard/ServiceAccount.svc?wsdl`
+* **SQL scripts**: `/Annexes/DB_API.sql`
+* **UML diagrams**: see `EliasBorrajo_MilenaLonfat_JonathanBourquin_604_3.docx` (pages TBD)
+* **Sequence diagrams**: see `624-2ITMan_EliasBorrajo_MilenaLonfat_JonathanBourquin_604_3.pptx`
+
+## 📌 Success Criteria Table
+
+| Criterion                  | Status | Notes                                     |
+| -------------------------- | ------ | ----------------------------------------- |
+| SOAP endpoints exposed     | ✅ Done | `ServiceAccount.svc` endpoint functioning |
+| Windows Forms client       | ✅ Done | `/StudentCardAPI` included                |
+| Quota management endpoints | ✅ Done | `AddAmountByUsername`, `AddAmountByUID`   |
+|                            |        |                                           |
+
+## 👤 Authors
+
+* **Elias Borrajo**&#x20;
+* **Milena Lonfat**&#x20;
+* **Jonathan Bourquin**&#x20;
+
+---
+
+**Project completed for the course**
+**Information Technologies Infrastructure Library (ITIL) – Service Management**
+**Instructors: David Wannier & Alain Duc, HES-SO Valais-Wallis**
+
+*(Original README kept for historical reference)*
