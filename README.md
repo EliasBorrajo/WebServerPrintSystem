@@ -6,7 +6,7 @@
 
 ## 1 · Purpose
 
-This project exposes a **REST API** that partner apps (e.g. university intranet or self‑service kiosks) can call to:
+This project exposes a **SOAP API** that partner apps (e.g. university intranet or self‑service kiosks) can call to:
 
 1. **Register students** (name, photo, study path).
 2. **Generate & queue** printable ID‑card.
